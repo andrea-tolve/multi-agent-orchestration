@@ -1,0 +1,39 @@
+{
+  "pose": {
+    "name": "pose",
+    "mqtt_topic": "turtlebot/pose",
+    "data_type": "dict",
+    "description": "Robot position and orientation (x, y, theta)"
+  },
+  "velocity": {
+    "name": "velocity",
+    "mqtt_topic": "turtlebot/velocity",
+    "data_type": "dict",
+    "description": "Robot linear and angular velocities"
+  },
+  "imu": {
+    "name": "imu",
+    "mqtt_topic": "turtlebot/imu",
+    "data_type": "dict",
+    "description": "Inertial measurement unit data (acceleration, gyro, orientation)"
+  },
+  "battery": {
+    "name": "battery",
+    "mqtt_topic": "turtlebot/battery",
+    "data_type": "dict",
+    "description": "Battery voltage and percentage"
+  },
+  "scan": {
+    "name": "scan",
+    "mqtt_topic": "turtlebot/scan/info",
+    "data_type": "dict",
+    "description": "LiDAR scan metadata and ranges",
+    "is_array": true
+  },
+  "joints": {
+    "name": "joints",
+    "mqtt_topic": "turtlebot/joints",
+    "data_type": "dict",
+    "description": "Joint positions, velocities, and efforts"
+  }
+}

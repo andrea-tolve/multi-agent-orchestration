@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {font-family: Arial, sans-serif; text-align: center; margin-top: 50px;}
+        button {margin: 10px; padding: 10px 20px; font-size: 16px;}
+        #result {margin-top: 20px; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div>
+        <button onclick="sendMove('rock')">Rock</button>
+        <button onclick="sendMove('paper')">Paper</button>
+        <button onclick="sendMove('scissors')">Scissors</button>
+    </div>
+    <div id="status">Waiting for your move...</div>
+    <div id="result"></div>
+    <script>
+        let pollInterval = null;
+        function sendMove(move) {
+            fetch('/api/rps/play', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({move: move})
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                document.getElementById('status').innerText = 'Move sent: ' + move + '. Waiting for opponent...';
+                startPolling();
+            })
+            .catch(err => console.error('Error:', err));
+        }
+        function startPolling() {
+            if (pollInterval) return;
+            pollInterval = setInterval(() => {
+                fetch('/api/status')
+                .then(resp => resp.json())
+                .then(data => {
+                    if (data.completed === 'yes') {
+                        clearInterval(pollInterval);
+                        pollInterval = null;
+                        const d = data.data;
+                        let resultText = `You played ${d.player_move || 'N/A'}; Opponent played ${d.opponent_move || 'N/A'}; Result: ${d.result || 'Pending'}`;
+                        document.getElementById('result').innerText = resultText;
+                        document.getElementById('status').innerText = 'Game completed.';
+                    }
+                })
+                .catch(err => console.error('Polling error:', err));
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

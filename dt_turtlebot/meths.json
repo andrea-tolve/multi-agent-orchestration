@@ -1,0 +1,98 @@
+{
+  "move": {
+    "name": "move",
+    "mqtt_command_topic": "turtlebot/move",
+    "description": "Send velocity command to robot",
+    "parameters": {
+      "linear_x": {
+        "type": "float",
+        "required": true,
+        "default": 0.0,
+        "description": "Linear velocity in X direction (m/s)"
+      },
+      "linear_y": {
+        "type": "float",
+        "required": true,
+        "default": 0.0,
+        "description": "Linear velocity in Y direction (m/s)"
+      },
+      "angular_z": {
+        "type": "float",
+        "required": true,
+        "default": 0.0,
+        "description": "Angular velocity around Z axis (rad/s)"
+      }
+    }
+  },
+  "forward": {
+    "name": "forward",
+    "mqtt_command_topic": "turtlebot/forward",
+    "description": "Move forward",
+    "parameters": {
+      "velocity": {
+        "type": "float",
+        "required": false,
+        "default": 0.1,
+        "description": "Forward velocity (m/s)"
+      }
+    }
+  },
+  "backward": {
+    "name": "backward",
+    "mqtt_command_topic": "turtlebot/backward",
+    "description": "Move backward",
+    "parameters": {
+      "velocity": {
+        "type": "float",
+        "required": false,
+        "default": 0.1,
+        "description": "Backward velocity (m/s)"
+      }
+    }
+  },
+  "turn_left": {
+    "name": "turn_left",
+    "mqtt_command_topic": "turtlebot/turn_left",
+    "description": "Turn left",
+    "parameters": {
+      "angular_velocity": {
+        "type": "float",
+        "required": false,
+        "default": 0.5,
+        "description": "Angular velocity (rad/s)"
+      }
+    }
+  },
+  "turn_right": {
+    "name": "turn_right",
+    "mqtt_command_topic": "turtlebot/turn_right",
+    "description": "Turn right",
+    "parameters": {
+      "angular_velocity": {
+        "type": "float",
+        "required": false,
+        "default": 0.5,
+        "description": "Angular velocity (rad/s)"
+      }
+    }
+  },
+  "rotate": {
+    "name": "rotate",
+    "mqtt_command_topic": "turtlebot/rotate",
+    "description": "Rotate in place",
+    "parameters": {
+      "angular_velocity": {
+        "type": "float",
+        "required": false,
+        "default": 0.5,
+        "description": "Angular velocity (rad/s)"
+      }
+    }
+  },
+  "stop_moving": {
+    "name": "stop_moving",
+    "mqtt_command_topic": "turtlebot/stop",
+    "description": "Stop all movement",
+    "parameters": {}
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "clean": {
+    "name": "clean",
+    "mqtt_command_topic": "roomba/clean",
+    "description": "Start normal cleaning",
+    "parameters": {}
+  },
+  "max_clean": {
+    "name": "max_clean",
+    "mqtt_command_topic": "roomba/max_clean",
+    "description": "Start maximum cleaning",
+    "parameters": {}
+  },
+  "spot_clean": {
+    "name": "spot_clean",
+    "mqtt_command_topic": "roomba/spot_clean",
+    "description": "Start spot cleaning",
+    "parameters": {}
+  },
+  "dock": {
+    "name": "dock",
+    "mqtt_command_topic": "roomba/dock",
+    "description": "Return to dock",
+    "parameters": {}
+  },
+  "mode": {
+    "name": "mode",
+    "mqtt_command_topic": "roomba/mode",
+    "description": "Set robot operating mode",
+    "parameters": {
+      "mode": {
+        "type": "string",
+        "required": true,
+        "enum": ["passive", "safe", "full"],
+        "description": "Operating mode (passive, safe, or full)"
+      }
+    }
+  },
+  "power_off": {
+    "name": "power_off",
+    "mqtt_command_topic": "roomba/power_off",
+    "description": "Power off the robot",
+    "parameters": {}
+  },
+  "move": {
+    "name": "move",
+    "mqtt_command_topic": "roomba/move",
+    "description": "Move with velocity and angle",
+    "parameters": {
+      "velocity": {
+        "type": "float",
+        "required": true,
+        "description": "Velocity"
+      },
+      "angle": {
+        "type": "float",
+        "required": true,
+        "description": "Angle"
+      }
+    }
+  },
+  "stop": {
+    "name": "stop",
+    "mqtt_command_topic": "roomba/stop",
+    "description": "Stop all movement",
+    "parameters": {}
+  },
+  "drive": {
+    "name": "drive",
+    "mqtt_command_topic": "roomba/drive",
+    "description": "Drive with velocity and radius",
+    "parameters": {
+      "velocity": {
+        "type": "int",
+        "required": true,
+        "description": "Velocity in mm/s"
+      },
+      "radius": {
+        "type": "int",
+        "required": true,
+        "description": "Radius in mm"
+      }
+    }
+  },
+  "drive_pwm": {
+    "name": "drive_pwm",
+    "mqtt_command_topic": "roomba/drive_pwm",
+    "description": "Drive with PWM values for each wheel",
+    "parameters": {
+      "left_pwm": {
+        "type": "int",
+        "required": true,
+        "description": "Left wheel PWM"
+      },
+      "right_pwm": {
+        "type": "int",
+        "required": true,
+        "description": "Right wheel PWM"
+      }
+    }
+  },
+  "motors": {
+    "name": "motors",
+    "mqtt_command_topic": "roomba/motors",
+    "description": "Control motor PWM values",
+    "parameters": {
+      "left": {
+        "type": "int",
+        "required": true,
+        "description": "Left motor PWM"
+      },
+      "right": {
+        "type": "int",
+        "required": true,
+        "description": "Right motor PWM"
+      }
+    }
+  },
+  "buttons": {
+    "name": "buttons",
+    "mqtt_command_topic": "roomba/buttons",
+    "description": "Send button commands",
+    "parameters": {
+      "buttons": {
+        "type": "int",
+        "required": true,
+        "description": "Button bitmask"
+      }
+    }
+  },
+  "song": {
+    "name": "song",
+    "mqtt_command_topic": "roomba/song",
+    "description": "Define a song",
+    "parameters": {
+      "song_number": {
+        "type": "int",
+        "required": true,
+        "description": "Song number"
+      },
+      "note_number_list": {
+        "type": "array",
+        "required": true,
+        "description": "List of note numbers"
+      },
+      "note_duration_list": {
+        "type": "array",
+        "required": true,
+        "description": "List of note durations"
+      }
+    }
+  },
+  "play_song": {
+    "name": "play_song",
+    "mqtt_command_topic": "roomba/play_song",
+    "description": "Play a defined song",
+    "parameters": {
+      "song_number": {
+        "type": "int",
+        "required": true,
+        "description": "Song number to play"
+      }
+    }
+  }
+}

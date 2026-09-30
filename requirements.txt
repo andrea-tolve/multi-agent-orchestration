@@ -1,0 +1,15 @@
+numpy
+paho-mqtt
+pyserial
+docker
+kubernetes
+PyYAML
+Flask
+python-dotenv
+langchain-google-genai
+langchain-openai
+langchain
+pydantic
+pandas
+matplotlib
+aiohttp

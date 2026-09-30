@@ -1,0 +1,20 @@
+{
+  "battery": {
+    "name": "battery",
+    "mqtt_topic": "roomba/battery",
+    "data_type": "dict",
+    "description": "Battery information (voltage, current, temperature, charge, capacity)"
+  },
+  "sensors": {
+    "name": "sensors",
+    "mqtt_topic": "roomba/sensors",
+    "data_type": "dict",
+    "description": "Sensor data (distance, angle, encoder_left, encoder_right)"
+  },
+  "mode": {
+    "name": "mode",
+    "mqtt_topic": "roomba/mode",
+    "data_type": "dict",
+    "description": "Robot mode information (oi_mode, charging_state)"
+  }
+}

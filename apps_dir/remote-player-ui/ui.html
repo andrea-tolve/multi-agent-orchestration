@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {font-family: Arial, sans-serif; text-align: center; margin-top: 50px;}
+        button {margin: 10px; padding: 15px 30px; font-size: 16px;}
+        #result {margin-top: 30px; font-size: 20px; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <button onclick="sendMove('rock')">Rock</button>
+    <button onclick="sendMove('paper')">Paper</button>
+    <button onclick="sendMove('scissors')">Scissors</button>
+    <div id="result">Waiting for your move...</div>
+
+    <script>
+        let lastCompleted = 'no';
+        function sendMove(move) {
+            fetch('/api/rps/remote/play', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({move: move})
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                document.getElementById('result').innerText = 'Move sent. Waiting for opponent...';
+            })
+            .catch(err => console.error('Error:', err));
+        }
+
+        function pollStatus() {
+            fetch('/api/status')
+                .then(resp => resp.json())
+                .then(data => {
+                    if (data.completed === 'yes' && lastCompleted !== 'yes') {
+                        const res = data.data.result || 'No result';
+                        document.getElementById('result').innerText = `You chose ${data.data.local_move}, opponent chose ${data.data.opponent_move}. Result: ${res}`;
+                    }
+                    lastCompleted = data.completed;
+                })
+                .catch(err => console.error('Polling error:', err));
+        }
+        setInterval(pollStatus, 1000);
+    </script>
+</body>
+</html>
